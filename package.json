@@ -1,0 +1,60 @@
+{
+  "name": "laravel-mix-manifest-paths",
+  "version": "0.0.0",
+  "description": "A laravel-mix extension that grants access to the generated manifest's paths in static assets.",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "rimraf tests/coverage && jest",
+    "test:coverage": "npm test -- --coverage",
+    "lint": "eslint . --ignore-path .gitignore --ext .ts,.js --max-warnings 3",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "rimraf dist && tsc -p src",
+    "clean": "rimraf dist tests/coverage",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soufyakoub/laravel-mix-manifest-paths.git"
+  },
+  "keywords": [
+    "laravel",
+    "mix",
+    "laravel-mix",
+    "manifest",
+    "url",
+    "public",
+    "webpack",
+    "extension",
+    "plugin"
+  ],
+  "author": {
+    "name": "Soufiane Yakoubi",
+    "email": "splentercell.1997@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soufyakoub/laravel-mix-manifest-paths/issues"
+  },
+  "homepage": "https://github.com/soufyakoub/laravel-mix-manifest-paths#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.8",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "codecov": "^3.8.3",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.2",
+    "jest": "^27.1.0",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.4.7",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.2"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "importHelpers": true
+  }
+}

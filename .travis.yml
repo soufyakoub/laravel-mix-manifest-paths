@@ -1,0 +1,29 @@
+os:
+  - linux
+  - osx
+  - windows
+
+language: node_js
+
+node_js:
+  - 12
+  - node
+
+script: npm run test:coverage
+after_success: npx codecov
+
+jobs:
+  include:
+    - stage: lint
+      node_js: lts/*
+      script: npm run lint
+    - stage: deploy
+      node_js: lts/*
+      before_script: npm run build
+      script: npx semantic-release
+      if: branch = master
+
+stages:
+  - lint
+  - test
+  - deploy
