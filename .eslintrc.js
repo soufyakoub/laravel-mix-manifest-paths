@@ -313,6 +313,13 @@ module.exports = {
 			},
 		},
 		{
+			files: "**/*.d.ts",
+			rules: {
+				// Custom rules
+				"@typescript-eslint/init-declarations": "off",
+			},
+		},
+		{
 			files: ".eslintrc.js",
 			rules: {
 				// Custom rules
