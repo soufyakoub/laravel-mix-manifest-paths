@@ -49,7 +49,7 @@ module.exports = {
 		"eol-last": "error",
 		"func-call-spacing": "error",
 		"function-call-argument-newline": ["error", "consistent"],
-		"function-paren-newline": ["error", "multiline"],
+		"function-paren-newline": ["error", "multiline-arguments"],
 		"implicit-arrow-linebreak": "error",
 		"indent": ["error", "tab"],
 		"key-spacing": "error",
@@ -89,7 +89,7 @@ module.exports = {
 			{blankLine: "always", prev: "*", next: "return"},
 		],
 		"quote-props": ["error", "consistent-as-needed"],
-		"quotes": "error",
+		"quotes": ["error", "double", {avoidEscape: true}],
 		"semi": "error",
 		"semi-spacing": "error",
 		"semi-style": "error",
@@ -292,24 +292,11 @@ module.exports = {
 				"@typescript-eslint/no-use-before-define": "error",
 				"@typescript-eslint/no-useless-constructor": "error",
 				"@typescript-eslint/object-curly-spacing": "error",
-				"@typescript-eslint/quotes": "error",
+				"@typescript-eslint/quotes": ["error", "double", {avoidEscape: true}],
 				"@typescript-eslint/return-await": "error",
 				"@typescript-eslint/semi": "error",
 				"@typescript-eslint/space-before-function-paren": ["error", {named: "never"}],
 				"@typescript-eslint/space-infix-ops": "error",
-			},
-		},
-		{
-			files: "tests/*.ts",
-			rules: {
-				// Custom rules
-				"max-len": "off",
-				"max-lines-per-function": "off",
-				"padding-line-between-statements": [
-					"error",
-					{blankLine: "always", prev: ["var", "const", "let"], next: "*"},
-					{blankLine: "any", prev: ["var", "const", "let"], next: ["var", "const", "let"]},
-				],
 			},
 		},
 		{
