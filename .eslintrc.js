@@ -34,7 +34,6 @@ module.exports = {
 		"no-unused-expressions": "error",
 		"vars-on-top": "error",
 		"wrap-iife": ["error", "inside", {functionPrototypeMethods: true}],
-		"init-declarations": "error",
 		"no-shadow": ["error", {builtinGlobals: true}],
 		"no-use-before-define": "error",
 		"array-bracket-newline": ["error", {multiline: true}],
@@ -251,7 +250,6 @@ module.exports = {
 				"dot-notation": "off",
 				"func-call-spacing": "off",
 				"indent": "off",
-				"init-declarations": "off",
 				"keyword-spacing": "off",
 				"lines-between-class-members": "off",
 				"no-dupe-class-members": "off",
@@ -278,7 +276,6 @@ module.exports = {
 				"@typescript-eslint/dot-notation": "error",
 				"@typescript-eslint/func-call-spacing": "error",
 				"@typescript-eslint/indent": ["error", "tab"],
-				"@typescript-eslint/init-declarations": "error",
 				"@typescript-eslint/keyword-spacing": "error",
 				"@typescript-eslint/lines-between-class-members": "error",
 				"@typescript-eslint/no-dupe-class-members": "error",
@@ -297,13 +294,6 @@ module.exports = {
 				"@typescript-eslint/semi": "error",
 				"@typescript-eslint/space-before-function-paren": ["error", {named: "never"}],
 				"@typescript-eslint/space-infix-ops": "error",
-			},
-		},
-		{
-			files: "**/*.d.ts",
-			rules: {
-				// Custom rules
-				"@typescript-eslint/init-declarations": "off",
 			},
 		},
 		{
