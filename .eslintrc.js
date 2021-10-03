@@ -217,6 +217,7 @@ module.exports = {
 				"@typescript-eslint/no-base-to-string": "error",
 				"@typescript-eslint/no-confusing-non-null-assertion": "error",
 				"@typescript-eslint/no-dynamic-delete": "error",
+				"@typescript-eslint/no-explicit-any": ["error", {ignoreRestArgs: true}],
 				"@typescript-eslint/no-extraneous-class": "error",
 				"@typescript-eslint/no-implicit-any-catch": ["error", {allowExplicitAny: true}],
 				"@typescript-eslint/no-invalid-void-type": "error",
