@@ -53,7 +53,7 @@ export function getAssertionMessage(validator: ValidateFunction, var_name?: stri
 
 	// `error.message` is sure to be available as a string.
 	// see https://ajv.js.org/options.html#messages
-	const message = error.message!;
+	const message = error.message as string;
 
 	if (var_name === undefined) {
 		return message;

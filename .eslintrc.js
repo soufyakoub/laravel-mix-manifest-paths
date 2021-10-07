@@ -227,7 +227,6 @@ module.exports = {
 				"@typescript-eslint/no-unnecessary-type-arguments": "warn",
 				"@typescript-eslint/no-unnecessary-type-constraint": "warn",
 				"@typescript-eslint/no-unsafe-argument": "error",
-				"@typescript-eslint/non-nullable-type-assertion-style": "error",
 				"@typescript-eslint/prefer-enum-initializers": "error",
 				"@typescript-eslint/prefer-for-of": "error",
 				"@typescript-eslint/prefer-function-type": "error",
