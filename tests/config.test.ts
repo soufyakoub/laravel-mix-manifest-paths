@@ -3,6 +3,7 @@ import {exec} from "child_process";
 import {promisify} from "util";
 import stringToArgv from "string-argv";
 import {Api} from "laravel-mix";
+import {memoize} from "lodash";
 
 const originalArgv = process.argv;
 
@@ -15,7 +16,7 @@ beforeEach(() => {
 
 // laravel-mix's cli launches a webpack sub process
 // used to execute the webpack.mix.js config.
-async function deriveWebpackArgv(command: string) {
+const deriveWebpackArgv = memoize(async (command: string) => {
 	interface Dump {
 		script: string;
 		env: {
@@ -30,7 +31,7 @@ async function deriveWebpackArgv(command: string) {
 	const dump = JSON.parse(stdout) as Dump;
 
 	return stringToArgv(dump.script);
-}
+});
 
 describe("build mode", () => {
 	test("defaults to cwd as public dir", async () => {
