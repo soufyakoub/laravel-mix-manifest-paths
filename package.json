@@ -8,9 +8,9 @@
   ],
   "scripts": {
     "test": "rimraf tests/coverage && jest",
-    "test:coverage": "npm test -- --coverage",
+    "test:coverage": "rimraf tests/coverage && jest --coverage",
     "lint": "eslint . --ignore-path .gitignore --ext .ts,.js --max-warnings 3",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "eslint . --ignore-path .gitignore --ext .ts,.js --fix",
     "build": "rimraf dist && tsc -p src",
     "clean": "rimraf dist tests/coverage",
     "prepare": "husky install"
