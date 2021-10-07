@@ -32,7 +32,11 @@ export function cacheClearableMemoize<T extends AnyFunction>(
 export function resolveRawEntry(entry: RawEntry): ResolvedEntry[] {
 	const {from, to, options} = entry;
 
-	const srcs = glob.sync(from, {nodir: true, absolute: true});
+	// absolute paths are separated by a forward slash in windows,
+	// so we need to normalize them.
+	// see https://github.com/isaacs/node-glob/issues/419
+	const normalize = path.normalize.bind(path);
+	const srcs = glob.sync(from, {nodir: true, absolute: true}).map(normalize);
 
 	return srcs.map((src) => {
 		let dest: string;
