@@ -11,7 +11,7 @@ jest.setTimeout(15000);
 
 beforeEach(() => {
 	jest.resetModules();
-	process.argv = {...originalArgv};
+	process.argv = [...originalArgv];
 });
 
 // laravel-mix's cli launches a webpack sub process

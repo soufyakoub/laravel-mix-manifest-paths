@@ -66,7 +66,7 @@ describe("cacheClearableMemoize", () => {
 	});
 });
 
-describe("resolveEntry", () => {
+describe("resolveRawEntry", () => {
 	test("flattens dest paths", () => {
 		const rawEntry: RawEntry = {
 			from: "resources/**",
@@ -186,7 +186,7 @@ describe("resolveEntry", () => {
 	});
 });
 
-describe("resolveEntries", () => {
+describe("resolveRawEntries", () => {
 	test("later entry overrides previous entry with same dest", () => {
 		fs.writeFileSync("resources/1.js", "");
 
