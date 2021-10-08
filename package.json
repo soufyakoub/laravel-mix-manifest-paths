@@ -1,6 +1,6 @@
 {
   "name": "laravel-mix-manifest-paths",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A laravel-mix extension that grants access to the generated manifest's paths in static assets.",
   "main": "dist/index.js",
   "files": [
