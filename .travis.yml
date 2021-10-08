@@ -6,6 +6,8 @@ os:
 language: node_js
 node_js: lts/*
 
+env: HUSKY=0
+
 script: npm run test:coverage
 after_success: npx codecov
 
