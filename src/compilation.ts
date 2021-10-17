@@ -31,7 +31,7 @@ function getTemplate(entry: ResolvedEntry): TemplateExecutor {
 	return template(content, templateOptions);
 }
 
-const getTemplateCached = cacheClearableMemoize(getTemplate);
+const getTemplateCached = cacheClearableMemoize(getTemplate, (entry) => entry.src);
 
 function collectDeps(entry: ResolvedEntry, depGraph: DepGraph<ResolvedEntry>) {
 	const oldDeps = depGraph.directDependenciesOf(entry.public_url);
