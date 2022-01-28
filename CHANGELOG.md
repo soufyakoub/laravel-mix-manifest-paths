@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/soufyakoub/laravel-mix-manifest-paths/compare/v1.1.0...v1.1.1) (2022-01-28)
+
+
+### Bug Fixes
+
+* change dependency type ([c34f1bb](https://github.com/soufyakoub/laravel-mix-manifest-paths/commit/c34f1bbff86f54ebff3af038b43c049c15b2a055))
+
 # [1.1.0](https://github.com/soufyakoub/laravel-mix-manifest-paths/compare/v1.0.0...v1.1.0) (2021-10-17)
 
 
