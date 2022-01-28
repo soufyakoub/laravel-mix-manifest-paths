@@ -1,6 +1,6 @@
 [![npm](https://img.shields.io/npm/dt/laravel-mix-manifest-paths)](https://www.npmjs.com/package/laravel-mix-manifest-paths)
 [![npm](https://img.shields.io/npm/v/laravel-mix-manifest-paths)](https://www.npmjs.com/package/laravel-mix-manifest-paths)
-[![Build Status](https://travis-ci.com/soufyakoub/laravel-mix-manifest-paths.svg?branch=master)](https://travis-ci.com/soufyakoub/laravel-mix-manifest-paths)
+[![build](https://github.com/recursive-beast/laravel-mix-manifest-paths/actions/workflows/build.yml/badge.svg)](https://github.com/recursive-beast/laravel-mix-manifest-paths/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/soufyakoub/laravel-mix-manifest-paths/branch/master/graph/badge.svg)](https://codecov.io/gh/soufyakoub/laravel-mix-manifest-paths)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
