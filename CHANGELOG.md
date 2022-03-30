@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/recursive-beast/laravel-mix-manifest-paths/compare/v1.1.2...v1.1.3) (2022-03-30)
+
+
+### Bug Fixes
+
+* downgrade chalk from 5 to 4. Fixes [#2](https://github.com/recursive-beast/laravel-mix-manifest-paths/issues/2) ([80aa951](https://github.com/recursive-beast/laravel-mix-manifest-paths/commit/80aa951e588cf09b40f746066587dd478b95d849))
+
 ## [1.1.2](https://github.com/recursive-beast/laravel-mix-manifest-paths/compare/v1.1.1...v1.1.2) (2022-02-19)
 
 
