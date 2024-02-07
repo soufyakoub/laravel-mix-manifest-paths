@@ -8,14 +8,11 @@ module.exports = {
 		[
 			"@semantic-release/git",
 			{
-				assets: [
-					"package.json",
-					"package-lock.json",
-					"CHANGELOG.md",
-				],
-				message: "chore(release): [skip ci] ${nextRelease.version}\n\n${nextRelease.notes}",
+				assets: ["package.json", "package-lock.json", "CHANGELOG.md"],
+				message:
+					"chore(release): [skip ci] ${nextRelease.version}\n\n${nextRelease.notes}",
 			},
 		],
-		"@semantic-release/github",
+		["@semantic-release/github", { assets: "*.tgz" }],
 	],
 };

@@ -1,5 +1,5 @@
 import path from "path";
-import glob from "glob";
+import {globSync} from "glob";
 import globParent from "glob-parent";
 import {memoize, uniqBy} from "lodash";
 import {FullOptions} from "./options";
@@ -36,7 +36,7 @@ export function resolveRawEntry(entry: RawEntry): ResolvedEntry[] {
 	// so we need to normalize them.
 	// see https://github.com/isaacs/node-glob/issues/419
 	const normalize = path.normalize.bind(path);
-	const srcs = glob.sync(from, {nodir: true, absolute: true}).map(normalize);
+	const srcs = globSync(from, {nodir: true, absolute: true}).map(normalize);
 
 	return srcs.map((src) => {
 		let dest: string;
