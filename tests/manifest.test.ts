@@ -1,8 +1,11 @@
 import path from "path";
 import fs from "fs";
-import mock_fs from "mock-fs";
-import config, {Config} from "../src/config";
-import {readManifest, writeManifest} from "../src/manifest";
+import { vol } from "memfs";
+import config, { Config } from "../src/config";
+import { readManifest, writeManifest } from "../src/manifest";
+
+jest.mock("fs");
+jest.mock("fs/promises");
 
 jest.mock("../src/config", () => {
 	const mockConfig: Config = {
@@ -18,12 +21,8 @@ jest.mock("../src/config", () => {
 	return mockConfig;
 });
 
-beforeEach(() => {
-	mock_fs();
-});
-
 afterEach(() => {
-	mock_fs.restore();
+	vol.reset();
 });
 
 test("reads manifest from FS", () => {
@@ -32,7 +31,7 @@ test("reads manifest from FS", () => {
 		"/unversioned.js": "/versioned.js",
 	};
 
-	fs.mkdirSync(path.dirname(config.manifest_path), {recursive: true});
+	fs.mkdirSync(path.dirname(config.manifest_path), { recursive: true });
 	fs.writeFileSync(config.manifest_path, JSON.stringify(manifestJSON));
 
 	const manifestMap = readManifest();

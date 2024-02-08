@@ -3,19 +3,22 @@ import fs from "fs";
 import path from "path";
 import EventEmitter from "events";
 import {sortBy} from "lodash";
-import mock_fs from "mock-fs";
+import { vol } from "memfs";
 import {DepGraph} from "dependency-graph";
 import laravel_mix from "laravel-mix";
 import {build, watch} from "../src/compilation";
 import {defaultOptions} from "../src/options";
 import {ResolvedEntry} from "../src/helpers";
 
+jest.mock("fs");
+jest.mock("fs/promises");
+
 jest.mock("chokidar", () => ({
 	watch: () => new EventEmitter(),
 }));
 
 beforeEach(() => {
-	mock_fs({
+	vol.fromNestedJSON({
 		resources: {
 			"a.txt": "random txt {{mix('/txt/b.txt')}} qsdh"
 			+ "\n{{mix('/txt/sub/b.txt')}}",
@@ -41,7 +44,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-	mock_fs.restore();
+	vol.reset();
 });
 
 laravel_mix.setPublicPath("public");

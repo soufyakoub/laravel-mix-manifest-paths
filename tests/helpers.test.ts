@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import mock_fs from "mock-fs";
+import { vol } from "memfs";
 import {defaultOptions} from "../src/options";
 import {Config} from "../src/config";
 import {merge, sortBy} from "lodash";
@@ -11,6 +11,9 @@ import {
 	resolveRawEntries,
 	resolveRawEntry,
 } from "../src/helpers";
+
+jest.mock("fs");
+jest.mock("fs/promises");
 
 jest.mock("../src/config", () => {
 	const mockConfig: Config = {
@@ -27,7 +30,7 @@ jest.mock("../src/config", () => {
 });
 
 beforeEach(() => {
-	mock_fs({
+	vol.fromNestedJSON({
 		resources: {
 			js: {
 				"1.js": "",
@@ -42,7 +45,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-	mock_fs.restore();
+	vol.reset();
 });
 
 describe("cacheClearableMemoize", () => {
