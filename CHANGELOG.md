@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/recursive-beast/laravel-mix-manifest-paths/compare/v1.1.3...v2.0.0) (2024-02-08)
+
+
+### Features
+
+* update dependencies ([737e0a8](https://github.com/recursive-beast/laravel-mix-manifest-paths/commit/737e0a88c11a3b5f62c2bdd6b7875626c39ed631))
+
+
+### BREAKING CHANGES
+
+* bumped dependencies to major versions
+
 ## [1.1.3](https://github.com/recursive-beast/laravel-mix-manifest-paths/compare/v1.1.2...v1.1.3) (2022-03-30)
 
 
