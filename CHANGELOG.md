@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/recursive-beast/laravel-mix-manifest-paths/compare/v2.0.0...v2.0.1) (2024-02-08)
+
+
+### Bug Fixes
+
+* downgrade ESM packages ([a6e2027](https://github.com/recursive-beast/laravel-mix-manifest-paths/commit/a6e20273a2ae2ab870dbf3fb9f9cbdb30f623afd))
+
 # [2.0.0](https://github.com/recursive-beast/laravel-mix-manifest-paths/compare/v1.1.3...v2.0.0) (2024-02-08)
 
 
