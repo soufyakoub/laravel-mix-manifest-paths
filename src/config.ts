@@ -15,10 +15,14 @@ export interface Config {
 const internal = Mix.primary;
 
 const config: Config = {
-	get public_dir() { return path.resolve(internal.config.publicPath ?? "."); },
+	get public_dir() {
+		return path.resolve(internal.config.publicPath ?? ".");
+	},
 	get manifest_path() {
 		if (typeof internal.config.manifest !== "string") {
-			throw new Error("[manifest-paths]: expected a manifest file to be generated.");
+			throw new Error(
+				"[manifest-paths]: expected a manifest file to be generated.",
+			);
 		}
 
 		return path.join(this.public_dir, internal.config.manifest);

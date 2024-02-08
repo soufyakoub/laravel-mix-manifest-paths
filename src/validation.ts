@@ -1,10 +1,10 @@
-import Ajv, {DefinedError, JSONSchemaType, ValidateFunction} from "ajv";
-import {Options} from "./options";
+import Ajv, { DefinedError, JSONSchemaType, ValidateFunction } from "ajv";
+import { Options } from "./options";
 
 const ajv = new Ajv();
 
 export function getErrorPropertyPath(error: DefinedError, var_name: string) {
-	const {instancePath, schemaPath} = error;
+	const { instancePath, schemaPath } = error;
 	const instancePathSegments = instancePath.split("/");
 	const schemaPathSegments = schemaPath.split("/");
 
@@ -20,7 +20,7 @@ export function getErrorPropertyPath(error: DefinedError, var_name: string) {
 	for (let i = 0; i < instancePathSegments.length; i++) {
 		const index_keyword = schemaPathSegments[2 * i];
 		const index_name = instancePathSegments[i];
-		const use_dot_notation = (/^[a-zA-Z_$][0-9a-zA-Z_$]*$/).test(index_name);
+		const use_dot_notation = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/.test(index_name);
 
 		if (use_dot_notation) {
 			path += "." + index_name;
@@ -48,7 +48,10 @@ export function getValidatorError(validator: ValidateFunction) {
 	return errors[0];
 }
 
-export function getAssertionMessage(validator: ValidateFunction, var_name?: string) {
+export function getAssertionMessage(
+	validator: ValidateFunction,
+	var_name?: string,
+) {
 	const error = getValidatorError(validator);
 
 	// `error.message` is sure to be available as a string.

@@ -1,8 +1,8 @@
 import path from "path";
-import {globSync} from "glob";
+import { globSync } from "glob";
 import globParent from "glob-parent";
-import {memoize, uniqBy} from "lodash";
-import {FullOptions} from "./options";
+import { memoize, uniqBy } from "lodash";
+import { FullOptions } from "./options";
 import config from "./config";
 
 export interface RawEntry {
@@ -26,17 +26,17 @@ export function cacheClearableMemoize<T extends AnyFunction>(
 ) {
 	const memoized = memoize(func, resolver);
 
-	return Object.assign(memoized, {cache: new Map<unknown, unknown>()});
+	return Object.assign(memoized, { cache: new Map<unknown, unknown>() });
 }
 
 export function resolveRawEntry(entry: RawEntry): ResolvedEntry[] {
-	const {from, to, options} = entry;
+	const { from, to, options } = entry;
 
 	// absolute paths are separated by a forward slash in windows,
 	// so we need to normalize them.
 	// see https://github.com/isaacs/node-glob/issues/419
 	const normalize = path.normalize.bind(path);
-	const srcs = globSync(from, {nodir: true, absolute: true}).map(normalize);
+	const srcs = globSync(from, { nodir: true, absolute: true }).map(normalize);
 
 	return srcs.map((src) => {
 		let dest: string;
@@ -55,7 +55,7 @@ export function resolveRawEntry(entry: RawEntry): ResolvedEntry[] {
 		const relative_to_public = path.relative(config.public_dir, dest);
 		const public_url = "/" + relative_to_public.replace(/\\/g, "/");
 
-		return {src, dest, public_url, options};
+		return { src, dest, public_url, options };
 	});
 }
 
@@ -68,4 +68,3 @@ export function resolveRawEntries(rawEntries: RawEntry[]): ResolvedEntry[] {
 
 	return uniqBy(resolvedEntries.reverse(), "dest");
 }
-

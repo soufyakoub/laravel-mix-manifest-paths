@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { vol } from "memfs";
-import {defaultOptions} from "../src/options";
-import {Config} from "../src/config";
-import {merge, sortBy} from "lodash";
+import { defaultOptions } from "../src/options";
+import { Config } from "../src/config";
+import { merge, sortBy } from "lodash";
 import {
 	cacheClearableMemoize,
 	RawEntry,
@@ -74,7 +74,7 @@ describe("resolveRawEntry", () => {
 		const rawEntry: RawEntry = {
 			from: "resources/**",
 			to: "public",
-			options: {...defaultOptions},
+			options: { ...defaultOptions },
 		};
 
 		let expectedEntries: ResolvedEntry[] = [
@@ -82,25 +82,25 @@ describe("resolveRawEntry", () => {
 				src: path.resolve("resources/js/1.js"),
 				dest: path.resolve("public/1.js"),
 				public_url: "/1.js",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 			{
 				src: path.resolve("resources/js/2.jsx"),
 				dest: path.resolve("public/2.jsx"),
 				public_url: "/2.jsx",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 			{
 				src: path.resolve("resources/ts/1.ts"),
 				dest: path.resolve("public/1.ts"),
 				public_url: "/1.ts",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 			{
 				src: path.resolve("resources/ts/2.tsx"),
 				dest: path.resolve("public/2.tsx"),
 				public_url: "/2.tsx",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 		];
 
@@ -116,7 +116,7 @@ describe("resolveRawEntry", () => {
 		const rawEntry: RawEntry = {
 			from: "resources/**",
 			to: "public",
-			options: {...defaultOptions, flatten: false},
+			options: { ...defaultOptions, flatten: false },
 		};
 
 		let expectedEntries: ResolvedEntry[] = [
@@ -124,25 +124,25 @@ describe("resolveRawEntry", () => {
 				src: path.resolve("resources/js/1.js"),
 				dest: path.resolve("public/js/1.js"),
 				public_url: "/js/1.js",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 			{
 				src: path.resolve("resources/js/2.jsx"),
 				dest: path.resolve("public/js/2.jsx"),
 				public_url: "/js/2.jsx",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 			{
 				src: path.resolve("resources/ts/1.ts"),
 				dest: path.resolve("public/ts/1.ts"),
 				public_url: "/ts/1.ts",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 			{
 				src: path.resolve("resources/ts/2.tsx"),
 				dest: path.resolve("public/ts/2.tsx"),
 				public_url: "/ts/2.tsx",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 		];
 
@@ -158,11 +158,7 @@ describe("resolveRawEntry", () => {
 		const rawEntry: RawEntry = {
 			from: "resources/js/**",
 			to: "public",
-			options: merge(
-				{},
-				defaultOptions,
-				{delimiters: {left: "<<"}},
-			),
+			options: merge({}, defaultOptions, { delimiters: { left: "<<" } }),
 		};
 
 		let expectedEntries: ResolvedEntry[] = [
@@ -170,13 +166,13 @@ describe("resolveRawEntry", () => {
 				src: path.resolve("resources/js/1.js"),
 				dest: path.resolve("public/1.js"),
 				public_url: "/1.js",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 			{
 				src: path.resolve("resources/js/2.jsx"),
 				dest: path.resolve("public/2.jsx"),
 				public_url: "/2.jsx",
-				options: {...rawEntry.options},
+				options: { ...rawEntry.options },
 			},
 		];
 
@@ -194,9 +190,21 @@ describe("resolveRawEntries", () => {
 		fs.writeFileSync("resources/1.js", "");
 
 		const rawEntries: RawEntry[] = [
-			{from: "resources/js/**", to: "public", options: {...defaultOptions}},
-			{from: "resources/ts/**", to: "public", options: {...defaultOptions}},
-			{from: "resources/1.js", to: "public", options: {...defaultOptions, flatten: false}},
+			{
+				from: "resources/js/**",
+				to: "public",
+				options: { ...defaultOptions },
+			},
+			{
+				from: "resources/ts/**",
+				to: "public",
+				options: { ...defaultOptions },
+			},
+			{
+				from: "resources/1.js",
+				to: "public",
+				options: { ...defaultOptions, flatten: false },
+			},
 		];
 
 		let expectedEntries: ResolvedEntry[] = [
@@ -204,25 +212,25 @@ describe("resolveRawEntries", () => {
 				src: path.resolve("resources/1.js"),
 				dest: path.resolve("public/1.js"),
 				public_url: "/1.js",
-				options: {...defaultOptions, flatten: false},
+				options: { ...defaultOptions, flatten: false },
 			},
 			{
 				src: path.resolve("resources/js/2.jsx"),
 				dest: path.resolve("public/2.jsx"),
 				public_url: "/2.jsx",
-				options: {...defaultOptions},
+				options: { ...defaultOptions },
 			},
 			{
 				src: path.resolve("resources/ts/1.ts"),
 				dest: path.resolve("public/1.ts"),
 				public_url: "/1.ts",
-				options: {...defaultOptions},
+				options: { ...defaultOptions },
 			},
 			{
 				src: path.resolve("resources/ts/2.tsx"),
 				dest: path.resolve("public/2.tsx"),
 				public_url: "/2.tsx",
-				options: {...defaultOptions},
+				options: { ...defaultOptions },
 			},
 		];
 

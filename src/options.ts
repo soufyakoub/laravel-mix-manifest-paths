@@ -1,4 +1,4 @@
-export {assertIsOptions} from "./validation";
+export { assertIsOptions } from "./validation";
 
 export interface Options {
 	/** The delimiter tags. */

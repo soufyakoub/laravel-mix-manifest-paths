@@ -1,14 +1,23 @@
-import {Stats} from "webpack";
+import { Stats } from "webpack";
 import chalk from "chalk";
 import laravel_mix from "laravel-mix";
-import {Options, defaultOptions} from "./options";
+import { Options, defaultOptions } from "./options";
 import config from "./config";
-import {build, CompilationWatcher, OnEntryCompiled, watch} from "./compilation";
-import {resolveRawEntries, RawEntry} from "./helpers";
-import {merge} from "lodash";
-import {assertIsOptions, assertIsTruthyString, assertIsTruthyStringArray} from "./validation";
+import {
+	build,
+	CompilationWatcher,
+	OnEntryCompiled,
+	watch,
+} from "./compilation";
+import { resolveRawEntries, RawEntry } from "./helpers";
+import { merge } from "lodash";
+import {
+	assertIsOptions,
+	assertIsTruthyString,
+	assertIsTruthyStringArray,
+} from "./validation";
 
-export {Options} from "./options";
+export { Options } from "./options";
 
 // Augment laravel-mix Api interface with the new available method.
 declare module "laravel-mix" {
@@ -20,14 +29,18 @@ declare module "laravel-mix" {
 		 * @param to The output directory.
 		 * @param options An object to override default options.
 		 */
-		manifestPaths(from: string | string[], to: string, options?: Options): this;
+		manifestPaths(
+			from: string | string[],
+			to: string,
+			options?: Options,
+		): this;
 	}
 }
 
 export default class ManifestPaths {
 	public rawEntries: RawEntry[] = [];
 
-	private defaultOptions = {...defaultOptions};
+	private defaultOptions = { ...defaultOptions };
 
 	public setDefaultOptions(options: Options) {
 		assertIsOptions(options, "options");
@@ -93,7 +106,9 @@ laravel_mix.after(async (stats: Stats) => {
 		watcher = watch(entries, depGraph);
 
 		watcher.on("entry-compiled", (entry) => {
-			const message = chalk.green(`\t[manifest-paths]: Recompiled '${entry.dest}'`);
+			const message = chalk.green(
+				`\t[manifest-paths]: Recompiled '${entry.dest}'`,
+			);
 
 			console.log(message);
 		});

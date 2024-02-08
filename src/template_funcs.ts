@@ -1,6 +1,6 @@
 import urljoin from "url-join";
 import config from "./config";
-import {readManifestCached} from "./manifest";
+import { readManifestCached } from "./manifest";
 
 export function mix(public_url: string) {
 	const versioned_public_url = readManifestCached().get(public_url);

@@ -3,12 +3,12 @@
 // after thoroughly examining laravel-mix's source code.
 
 declare module "laravel-mix/src/Mix" {
-	import {MixConfig as InvalidMixConfig} from "laravel-mix/types/config";
-	import {Component} from "laravel-mix/types/component";
+	import { MixConfig as InvalidMixConfig } from "laravel-mix/types/config";
+	import { Component } from "laravel-mix/types/component";
 
 	// See "laravel-mix/src/components/Components.js"
 	interface Components {
-	/** Record a newly registered component. */
+		/** Record a newly registered component. */
 		record(name: string, component: Component): void;
 
 		/** Retrieve a recorded component. */
@@ -43,5 +43,5 @@ declare module "laravel-mix/src/Mix" {
 
 	declare const Mix: Mix;
 
-	export default {primary: Mix};
+	export default { primary: Mix };
 }

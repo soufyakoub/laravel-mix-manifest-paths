@@ -1,12 +1,12 @@
 import fs from "fs";
 import chokidar from "chokidar";
-import {escapeRegExp, intersection, template, TemplateExecutor} from "lodash";
-import {DepGraph} from "dependency-graph";
-import {hashContent, readManifestCached, writeManifest} from "./manifest";
+import { escapeRegExp, intersection, template, TemplateExecutor } from "lodash";
+import { DepGraph } from "dependency-graph";
+import { hashContent, readManifestCached, writeManifest } from "./manifest";
 import config from "./config";
-import {mix} from "./template_funcs";
+import { mix } from "./template_funcs";
 import path from "path";
-import {cacheClearableMemoize, ResolvedEntry} from "./helpers";
+import { cacheClearableMemoize, ResolvedEntry } from "./helpers";
 
 export type OnEntryCompiled = (entry: ResolvedEntry, output: string) => void;
 
@@ -16,7 +16,7 @@ export type CompilationWatcher = chokidar.FSWatcher & {
 
 function getTemplate(entry: ResolvedEntry): TemplateExecutor {
 	const content = fs.readFileSync(entry.src, "utf-8");
-	const {right: r, left: l} = entry.options.delimiters;
+	const { right: r, left: l } = entry.options.delimiters;
 	const e_r = escapeRegExp(r);
 	const e_l = escapeRegExp(l);
 	const templateOptions = {
@@ -31,7 +31,10 @@ function getTemplate(entry: ResolvedEntry): TemplateExecutor {
 	return template(content, templateOptions);
 }
 
-const getTemplateCached = cacheClearableMemoize(getTemplate, (entry) => entry.src);
+const getTemplateCached = cacheClearableMemoize(
+	getTemplate,
+	(entry) => entry.src,
+);
 
 function collectDeps(entry: ResolvedEntry, depGraph: DepGraph<ResolvedEntry>) {
 	const oldDeps = depGraph.directDependenciesOf(entry.public_url);
@@ -52,7 +55,7 @@ function collectDeps(entry: ResolvedEntry, depGraph: DepGraph<ResolvedEntry>) {
 
 	const render = getTemplateCached(entry);
 
-	render({mix: depCollector});
+	render({ mix: depCollector });
 }
 
 // The public_url property is the unique id of each node.
@@ -83,9 +86,9 @@ function compile(
 
 	for (const entry of toCompile) {
 		const render = getTemplateCached(entry);
-		const output = render({mix});
+		const output = render({ mix });
 
-		fs.mkdirSync(path.dirname(entry.dest), {recursive: true});
+		fs.mkdirSync(path.dirname(entry.dest), { recursive: true });
 		fs.writeFileSync(entry.dest, output);
 
 		const hash = hashContent(output);
@@ -103,42 +106,50 @@ function compile(
 	writeManifest(manifest);
 }
 
-const onChangeFactory = (
-	watcher: CompilationWatcher,
-	entries: ResolvedEntry[],
-	depGraph: DepGraph<ResolvedEntry>,
-) => (filepath: string): void => {
-	getTemplateCached.cache.clear();
-	readManifestCached.cache.clear();
+const onChangeFactory =
+	(
+		watcher: CompilationWatcher,
+		entries: ResolvedEntry[],
+		depGraph: DepGraph<ResolvedEntry>,
+	) =>
+	(filepath: string): void => {
+		getTemplateCached.cache.clear();
+		readManifestCached.cache.clear();
 
-	const relevantEntries = entries.filter((entry) => entry.src === filepath);
-	const toCompile = new Set<ResolvedEntry>();
-	const getNodeData = depGraph.getNodeData.bind(depGraph);
+		const relevantEntries = entries.filter(
+			(entry) => entry.src === filepath,
+		);
+		const toCompile = new Set<ResolvedEntry>();
+		const getNodeData = depGraph.getNodeData.bind(depGraph);
 
-	for (const entry of relevantEntries) {
+		for (const entry of relevantEntries) {
+			collectDeps(entry, depGraph);
 
-		collectDeps(entry, depGraph);
+			toCompile.add(entry);
 
-		toCompile.add(entry);
+			const deps = depGraph
+				.dependantsOf(entry.public_url)
+				.map(getNodeData);
 
-		const deps = depGraph.dependantsOf(entry.public_url).map(getNodeData);
-
-		for (const dep of deps) {
-			toCompile.add(dep);
+			for (const dep of deps) {
+				toCompile.add(dep);
+			}
 		}
-	}
 
-	const onEntryCompiled: OnEntryCompiled = (entry, output) => {
-		watcher.emit("entry-compiled", entry, output);
+		const onEntryCompiled: OnEntryCompiled = (entry, output) => {
+			watcher.emit("entry-compiled", entry, output);
+		};
+
+		compile(Array.from(toCompile), depGraph, onEntryCompiled);
+
+		getTemplateCached.cache.clear();
+		readManifestCached.cache.clear();
 	};
 
-	compile(Array.from(toCompile), depGraph, onEntryCompiled);
-
-	getTemplateCached.cache.clear();
-	readManifestCached.cache.clear();
-};
-
-export function build(entries: ResolvedEntry[], onEntryCompiled?: OnEntryCompiled) {
+export function build(
+	entries: ResolvedEntry[],
+	onEntryCompiled?: OnEntryCompiled,
+) {
 	getTemplateCached.cache.clear();
 	readManifestCached.cache.clear();
 
@@ -158,7 +169,7 @@ export function watch(
 ): CompilationWatcher {
 	const watcher = chokidar.watch(
 		entries.map((entry) => entry.src),
-		{usePolling: config.usePolling},
+		{ usePolling: config.usePolling },
 	);
 
 	const onChange = onChangeFactory(watcher, entries, depGraph);
