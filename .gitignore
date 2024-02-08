@@ -4,3 +4,4 @@ coverage
 dist
 temp
 workspace.code-workspace
+*.tgz
