@@ -74,7 +74,7 @@
     "glob-parent": "^6.0.2",
     "lodash": "^4.17.21",
     "tslib": "^2.6.2",
-    "url-join": "^4.0.1"
+    "url-join": "^5.0.0"
   },
   "peerDependencies": {
     "laravel-mix": "6.x.x"
